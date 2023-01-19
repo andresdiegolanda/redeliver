@@ -11,12 +11,13 @@ import java.time.LocalDateTime;
 
 public class RedeliverService {
 
-	public static final String jwtToken = "eyJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE2NzQwNDIxNTcsImV4cCI6MTY3NDA0MjgxNywiaXNzIjoiMjI2NzI1In0.JWe_vSv4r7j7f5iEPo5aw_wo5xmnm1tM4O6Ozp8O_GavouBQpQY6UY9HV-j1iSzv0EhSWzEAxA2mPbzwFnxHiRgbCKdXSGs8I1raKQhxBuWMDN1TLD5npRg1qPJwR8pmjyq25tNLOegQ6b2qbHLdQrBAmcBTckHGErFmd074wlU41D2hsoqTTgk8jCPHkWfqJcrVnheMWdH-QNd9pYNeibXJ_eTOojIXY_4RAKT3-2o-j3JJPOQ806zskBt02-BDOyw0_T2ZmE9nHob_QmEsl8jeORk1XJrDKw4l30Ppg6IDV_s6nihkhXxIugb58ntqKyrbhY5cwNGMcaLP8hwdpw";
+	public static final String jwtToken = " eyJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE2NzQwNDA1MjIsImV4cCI6MTY3NDA0MTE4MiwiaXNzIjoiMjI2NzI1In0.al5DVTttr2X_i0t4X7EPbrHD2XEwu9dPk82j9J7i2qGfPexC7MIujFlV9wzHGbmwN5JnVIqQWkuOJcw3-Jwj5K1dczam1Eq3ZPYCIoIA55E6uCsdB1xWjH__2683zhGiTCoXZVZ6ErZVQ8OlWzIDhAbub2JtRipFvsVyMqI7N1uINTHR_13CwmzUVb643BCG9cKohF7Y0bf7DhkkReH1aHxKyuxSVfY1A4GXs5QxJDoQLcLsPG3LcKczcQoODwA19ot6RMgOY8N7wf-jM96ieNCws_ykKy34OwKS96SOzc5sOYjWn48szVkG7YLrbS5Dz8Qwz59P8mrQz9QmWL3YfA";
 
 	public String redeliver() {
 		try {
-			getDeliveries();
-			return "result ok --" + LocalDateTime.now();
+			String result = "result:" + getDeliveries() + "--at:" + LocalDateTime.now();
+			System.out.println("@@@Result: " + result);
+			return result;
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}
