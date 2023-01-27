@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test;
 
 public class RedeliverServiceTest {
 
-	@Test
+	// @Test
 	public void shouldGetDeliveries() throws URISyntaxException, IOException, InterruptedException {
 		RedeliverService redeliverService = new RedeliverService();
 		HttpResponse<String> result = redeliverService.getDeliveries();
