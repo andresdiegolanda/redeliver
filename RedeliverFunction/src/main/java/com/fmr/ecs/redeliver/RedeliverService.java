@@ -17,8 +17,7 @@ import java.util.Map;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import com.amazonaws.auth.profile.ProfileCredentialsProvider;
-import com.amazonaws.regions.Regions;
+import com.amazonaws.auth.DefaultAWSCredentialsProviderChain;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3ClientBuilder;
 import com.amazonaws.services.s3.model.GetObjectRequest;
@@ -27,14 +26,14 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class RedeliverService {
 	private static final Logger logger = LogManager.getLogger(RedeliverService.class);
-	public static final String JWT_TOKEN = "eyJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE2NzQ4MzU4NDUsImV4cCI6MTY3NDgzNjUwNSwiaXNzIjoiMjI2NzI1In0.vzhO8GQiZoMzCE9k2a2sIhccQzpH_z52DFcLAGdg6t1PM4VVL086-mCRClhNDYuGUQNMakXanjpEnjPxrS1Y6iQ1dkkLD3sw8TwDp_uUNKgjZlsxPfCT79BL08_PyMQUA1PxIEBcJU-qldxadyPPVxtrqcTSgxO2rGdyRGrAbCHPc9HjbeyqK1348r0TrEmeqBCqkfCkuZVwOuR4rkYkAPWMoX1zF0-lQs5jO4dExAw_mXKVMD7y1BwyuSJWyDIORlSxJ7NUcu5GJ1OrXWE4wmcBzexBeGAIpedHXKkvlpjKgdt-saTuKVu2Il_LyyEf5QfqMRyB6TcsYZsEcDpQbg";
+	public static final String JWT_TOKEN = "eyJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE2NzUwMTc1MjcsImV4cCI6MTY3NTAxODE4NywiaXNzIjoiMjI2NzI1In0.OtUBfU8zSXMJJi1ijAvvUeibzgrU1Nu7qvk5ei9z6sbDvqqkoHpnFEwbjzH9buG6ufUxa_r7C7rLZKz1vMrpvr-zP7BfQTtdCZ_7WLF9QE9I3dm7akdq-7NZhMqd-oM0EL4Dk7-JhLIgQJvK_6MOunyaAI9c-5OrGpEHzelXhJtQsWrkz8-kwejQTd2qrbaRjEaFWVXoUJ52oA8vtvqvuIplNqlc9bXHhmd5EkkJI8L40dKyEQCbxvhUl6pGUNqf2sUOTcmmJ1oMRamiaTVFX2DIU0sjfMRQsTQDXxu-vfBU2Cg7Bg5gtdatDLh3DbjZPp1QFbZY2J-sBG4Z49Pnag";
 
 	/* client for local pc */
-	private static final AmazonS3 s3Client = AmazonS3ClientBuilder.standard().withRegion(Regions.EU_WEST_1)
-			.withCredentials(new ProfileCredentialsProvider()).build();
+//	private static final AmazonS3 s3Client = AmazonS3ClientBuilder.standard().withRegion(Regions.EU_WEST_1)
+//			.withCredentials(new ProfileCredentialsProvider()).build();
 	/* client for lambda */
-//	private static final AmazonS3 s3Client = AmazonS3ClientBuilder.standard()
-//			.withCredentials(DefaultAWSCredentialsProviderChain.getInstance()).build();
+	private static final AmazonS3 s3Client = AmazonS3ClientBuilder.standard()
+			.withCredentials(DefaultAWSCredentialsProviderChain.getInstance()).build();
 	private static final HttpClient HTTP_CLIENT = HttpClient.newBuilder().version(HttpClient.Version.HTTP_2).build();
 	public static final String DELIVERIES_URL = "https://api.github.com/app/hook/deliveries";
 	public static final String BUCKET_NAME = "redeliverpocbucket0";
